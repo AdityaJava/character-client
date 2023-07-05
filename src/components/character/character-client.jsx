@@ -55,7 +55,7 @@
                     </div>
                 </div>
             )
-        }
+        } 
 
         retrieveMessaged(){
             CharacterService.executeGetHousesService()
