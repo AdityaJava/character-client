@@ -103,16 +103,17 @@ function CardComponent(props) {
                 <div className="e-card" id="basic">
                     <div className="e-card-header">
                         <div className="e-card-header-caption">
+                            Selected Child's Data Card
                         </div>
                     </div>
                     <div className="e-card-content">
                         {
                             <table>
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center">
                                         "CharacterName:"
                                     </td>
-                                    <td>
+                                    <td style="text-align: center">
                                         {
                                             props.character.characterName
                                         }
@@ -120,20 +121,20 @@ function CardComponent(props) {
                                 </tr>
 
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center">
                                         "ActorName:"
                                     </td>
-                                    <td>
+                                    <td style="text-align: center">
                                         {
                                             props.character.actorName
                                         }
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center">
                                         "ActorLink:"
                                     </td>
-                                    <td>
+                                    <td style="text-align: center">
                                         {
                                             props.character.actorLink
                                         }
@@ -141,10 +142,10 @@ function CardComponent(props) {
                                 </tr>
 
                                 <tr>
-                                    <td>
+                                    <td style="text-align: center">
                                         "Nickname:"
                                     </td>
-                                    <td>
+                                    <td style="text-align: center">
                                         {
                                             props.character.nickname
                                         }
@@ -155,7 +156,6 @@ function CardComponent(props) {
                     </div>
                 </div>
             </div>
-
         )
     }
     return null
