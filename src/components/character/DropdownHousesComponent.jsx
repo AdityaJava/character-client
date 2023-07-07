@@ -60,14 +60,8 @@ class DropdownHousesComponent extends Component {
                                 </select>
                             </div>
                         </div>
-                        <div className="e-card" id="basic">
-                            <div className="e-card-header">
-                                <div className="e-card-header-caption">
-                                </div>
-                            </div>
-                            <CardComponent isChildSelected={this.state.isChildSelected} isChildDataLoaded={this.state.isChildDataLoaded} character={this.state.selectedChild} />
-                        </div>
                         <div>
+                            <CardComponent isChildSelected={this.state.isChildSelected} isChildDataLoaded={this.state.isChildDataLoaded} character={this.state.selectedChild} />
                         </div>
                     </div>
                 </div>
@@ -103,58 +97,62 @@ class DropdownHousesComponent extends Component {
 }
 
 function CardComponent(props) {
-    console.log(props)
-    console.log(props.isChildSelected)
     if (props.isChildSelected) {
         return (
             <div className="container">
-                <div className="e-card-content">
-                    {
-                        <table>
-                            <tr>
-                                <td>
-                                    "CharacterName:"
-                                </td>
-                                <td>
-                                    {
-                                        props.character.characterName
-                                    }
-                                </td>
-                            </tr>
+                <div className="e-card" id="basic">
+                    <div className="e-card-header">
+                        <div className="e-card-header-caption">
+                        </div>
+                    </div>
+                    <div className="e-card-content">
+                        {
+                            <table>
+                                <tr>
+                                    <td>
+                                        "CharacterName:"
+                                    </td>
+                                    <td>
+                                        {
+                                            props.character.characterName
+                                        }
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    "ActorName:"
-                                </td>
-                                <td>
-                                    {
-                                        props.character.actorName
-                                    }
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    "ActorLink:"
-                                </td>
-                                <td>
-                                    {
-                                        props.character.actorLink
-                                    }
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td>
+                                        "ActorName:"
+                                    </td>
+                                    <td>
+                                        {
+                                            props.character.actorName
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        "ActorLink:"
+                                    </td>
+                                    <td>
+                                        {
+                                            props.character.actorLink
+                                        }
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>
-                                    "Nickname:"
-                                </td>
-                                <td>
-                                    {
-                                        props.character.nickname
-                                    }
-                                </td>
-                            </tr>
-                        </table>
-                    }
+                                <tr>
+                                    <td>
+                                        "Nickname:"
+                                    </td>
+                                    <td>
+                                        {
+                                            props.character.nickname
+                                        }
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
                 </div>
             </div>
 
