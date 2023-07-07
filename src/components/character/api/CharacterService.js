@@ -6,6 +6,8 @@ class CharacterService{
     }
 
     getCharacterById(characterId){
+        console.log("getCharacterById")
+        console.log(characterId)
         return axios.get(`http://localhost:8080/api/v1/characters/${characterId}`);
     }
     

@@ -1,108 +1,138 @@
-import React, { Component, useState } from "react"
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/css/bootstrap.min.css';  
-import CharacterService from "./api/CharacterService";
-import { Button } from "bootstrap";
+    import React, { Component, useState } from "react"
+    import 'bootstrap/dist/css/bootstrap.css';
+    import 'bootstrap/dist/css/bootstrap.min.css';  
+    import CharacterService from "./api/CharacterService";
+    import { Button } from "bootstrap";
+    import '/node_modules/@syncfusion/ej2-layouts/styles/material.css';
 
-class DropdownHousesComponent extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            houses: [],
-            familyTree: [],
-            childNames: []
+    class DropdownHousesComponent extends Component{
+        constructor(props){
+            super(props)
+            this.state = {
+                houses: [],
+                familyTree: [],
+                selectedChild: {}
+            }
+            this.retreieveFamilyTree = this.retreieveFamilyTree.bind(this)
+            this.retrieveChilds = this.retrieveChilds.bind(this)
         }
-        this.retreieveFamilyTree = this.retreieveFamilyTree.bind(this)
-        this.handleGetChildrenCLick = this.handleGetChildrenCLick.bind(this)
-    }
 
-    componentDidMount(){
-        CharacterService.retrieveAllHousesService()
-        .then(response =>{
-            this.setState({
-                houses : response.data
+        componentDidMount(){
+            CharacterService.retrieveAllHousesService()
+            .then(response =>{
+                this.setState({
+                    houses : response.data
+                })
             })
-        })
 
-    }
+        }
 
-    render(){
-        return (  
-            <div className="container">
+        render(){
+            return (  
+                <div className="container">
 
-            <div className="MyDropdown">
-                <select class="form-select" aria-label="Default select example" onChange={this.retreieveFamilyTree}>
-                    <option selected>Select House</option>
-                    {
-                        this.state.houses.map(house =>{
-                            return <option value={house.houseName}>{house.houseName}</option>
-                        })
-                    }
-                </select>
-            </div>
-            <div>
-            <table className="table">
-                    <thead>
-                        <tr>
-                            <th>CharacterId</th>
-                            <th>CharacterName</th>
-                            <th>CharacterChildrens</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div className="MyDropdown">
+                <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <select class="form-select" aria-label="Default select example" onChange={this.retreieveFamilyTree}>
+                            <option selected>Select House</option>
                             {
-                                this.state.familyTree.map( character =>
-                                <tr>
-                                    <td>{character.characterId}</td>
-                                    <td>{character.characterName}</td>
-                                    <td>
-                                        <button onClick={() => this.handleGetChildrenCLick(character.characterChildList)}>
-                                            Get Child List
-                                        </button>
-                                    </td>
+                                this.state.houses.map(house =>{
+                                    return <option value={house.houseName}>{house.houseName}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+
+                        <select class="form-select" aria-label="Default select example" onChange={this.retrieveChilds}>
+                            <option selected>Select Character</option>
+                            {
+                                this.state.familyTree.map(character =>{
+                                    return <option value={character.characterId}>{character.characterName}</option>
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                    <div>
+
+        <div className="e-card" id="basic">
+          <div className="e-card-header">
+            <div className="e-card-header-caption">
+            </div>
+          </div>
+          <div className="e-card-content">
+                            {
+                                <table>
+                                    <tr>
                                     <td>
                                         {
-                                        this.state.childNames.map(childName => 
-                                            childName)
+                                         "CharacterName: "  + this.state.selectedChild.characterName
                                         }
                                     </td>
-                                </tr>
-                                )
+                                    </tr>
+                                    
+                                    <tr>
+                                    <td>
+                                        {
+                                        "ActorName: " + this.state.selectedChild.actorName
+                                        }
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                    <td>
+                                        {
+                                         "ActorLink: "  + this.state.selectedChild.actorLink
+                                        }
+                                    </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                    <td>
+                                        {
+                                        "Nickname: " + this.state.selectedChild.nickname
+                                        }
+                                    </td>
+                                    </tr>
+                                </table>
                             }
-                    </tbody>
-                </table>
+          </div>
+         </div>
+        </div>
 
-            </div>
-            </div>
-        )
-    }
+                    </div>
+                </div>
 
-    retreieveFamilyTree(e){
-        CharacterService.retrieveFamilyTree(e.target.value)
-        .then(response =>{
-            this.setState({
-                familyTree: response.data
+                </div>
+                </div>
+                </div>
+            )
+        }
+
+        retreieveFamilyTree(e){
+            CharacterService.retrieveFamilyTree(e.target.value)
+            .then(response =>{
+                this.setState({
+                    familyTree: response.data
+                })
             })
-        })
-    }
-    handleGetChildrenCLick(characterChildList){
-        let listTemp = [];
-        characterChildList.map(child =>{
-           CharacterService.getCharacterById(child.characterId)
-           .then(response =>{
-            console.log(response.data.characterName)
-            listTemp.push(response.data.characterName)
-            console.log("inside"+  listTemp)
-            this.setState({
-                childNames: listTemp
-        })
-           })
-        })
-        console.log("outside"+  listTemp)
-        this.setState({
-            childNames: listTemp
-    })
+        }
+
+        retrieveChilds(e){
+            CharacterService.getCharacterById(e.target.value)
+            .then(response =>{
+                console.log(response.data)
+                this.setState({
+                    selectedChild: response.data
+                })
+            })
+        }
 
     }
-}
-export default DropdownHousesComponent;
+    export default DropdownHousesComponent;
