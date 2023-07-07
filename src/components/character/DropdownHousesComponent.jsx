@@ -110,10 +110,10 @@ function CardComponent(props) {
                         {
                             <table>
                                 <tr>
-                                    <td style="text-align: center">
+                                    <td>
                                         "CharacterName:"
                                     </td>
-                                    <td style="text-align: center">
+                                    <td>
                                         {
                                             props.character.characterName
                                         }
@@ -121,20 +121,20 @@ function CardComponent(props) {
                                 </tr>
 
                                 <tr>
-                                    <td style="text-align: center">
+                                    <td>
                                         "ActorName:"
                                     </td>
-                                    <td style="text-align: center">
+                                    <td>
                                         {
                                             props.character.actorName
                                         }
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: center">
+                                    <td>
                                         "ActorLink:"
                                     </td>
-                                    <td style="text-align: center">
+                                    <td>
                                         {
                                             props.character.actorLink
                                         }
@@ -142,10 +142,10 @@ function CardComponent(props) {
                                 </tr>
 
                                 <tr>
-                                    <td style="text-align: center">
+                                    <td>
                                         "Nickname:"
                                     </td>
-                                    <td style="text-align: center">
+                                    <td>
                                         {
                                             props.character.nickname
                                         }
