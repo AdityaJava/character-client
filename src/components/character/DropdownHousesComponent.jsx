@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CharacterService from "./api/CharacterService";
 import { Button } from "bootstrap";
 import '/node_modules/@syncfusion/ej2-layouts/styles/material.css';
-
+import HeaderComponent from "./HeaderComponent";
 class DropdownHousesComponent extends Component {
     constructor(props) {
         super(props)
@@ -32,7 +32,7 @@ class DropdownHousesComponent extends Component {
     render() {
         return (
             <div className="container">
-
+                <HeaderComponent />
                 <div className="MyDropdown">
                     <div class="row">
                         <div class="col-sm-6">

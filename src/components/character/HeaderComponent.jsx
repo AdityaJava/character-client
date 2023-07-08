@@ -11,14 +11,15 @@ class HeaderComponent extends Component {
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item active">
                                     <Link to="/">Home</Link>
                                 </li>
                                 <li class="nav-item active">
                                     <Link to="/dropdown">Show Character Dropdown</Link>
                                 </li>
+                                <li class="nav-item active">
+                                    <Link to="/showAll">Show All Characters</Link>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>

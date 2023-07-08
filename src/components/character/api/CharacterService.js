@@ -14,9 +14,13 @@ class CharacterService {
     retrieveFamilyTree(houseName) {
         return axios.get(`http://localhost:8080/api/v1/characters/familytree/${houseName}`)
     }
-    getAllCHaracters(pageNumber) {
+    getAllCharactersWIthPaging(pageNumber) {
         return axios.get(`http://localhost:8080/api/v1/characters?page=${pageNumber}&size=30`)
     }
+    getAllCharacters() {
+        return axios.get(`http://localhost:8080/api/v1/characters`)
+    }
+
 }
 
 export default new CharacterService();
