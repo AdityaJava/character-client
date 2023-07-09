@@ -7,10 +7,11 @@ class ShowAllCharacters extends Component {
         super(props)
         this.state = {
             characters: [],
-            totalNumberOfPages: 0
+            totalNumberOfPages: 0,
+            currentPage: 0
         }
-        this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this)
         this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
+        this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this)
     }
 
 
@@ -20,7 +21,9 @@ class ShowAllCharacters extends Component {
                 console.log(response.data)
                 this.setState({
                     characters: response.data.content,
-                    currentPage: 0
+                    currentPage: 0,
+                    totalNumberOfPages: response.data.totalPages
+
 
                 })
             })
@@ -63,12 +66,6 @@ class ShowAllCharacters extends Component {
         )
     }
 
-    handlePreviousButtonClick() {
-        CharacterService.getAllCharactersWIthPaging(this.state.currentPage--)
-            .then(response => {
-                console.log(this.state.currentPage)
-            })
-    }
 
     handleNextButtonClick() {
         CharacterService.getAllCharactersWIthPaging(this.state.currentPage++)
@@ -78,13 +75,12 @@ class ShowAllCharacters extends Component {
 
     }
 
-
-}
-
-function previousButton(props) {
-    <button onClick={this.handlePreviousButtonClick}>
-        PREV
-    </button>
+    handlePreviousButtonClick() {
+        CharacterService.getAllCharactersWIthPaging(this.state.currentPage--)
+            .then(response => {
+                console.log(this.state.currentPage)
+            })
+    }
 
 }
 
