@@ -1,6 +1,6 @@
-import { Button } from "bootstrap";
 import React, { Component } from "react";
 import CharacterService from "./api/CharacterService";
+import HeaderComponent from "./HeaderComponent";
 import favourite_star from "./images/favourite_star.png";
 import unfav_star from "./images/unfav_star.png"
 
@@ -36,11 +36,13 @@ class ShowAllCharacters extends Component {
     render() {
         return (
             <div className="container">
+                <HeaderComponent />
                 <table className="table">
                     <thead>
                         <tr>
                             <th>Id</th>
                             <th>CharacterName</th>
+                            <th>Double Click</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,7 +53,7 @@ class ShowAllCharacters extends Component {
                                     <td>{character.characterName}</td>
                                     <td>
                                         {
-                                            character.favouriteCharacter ? <img src={favourite_star} width={25} height={25} onClick={() => this.handleFavouriteClick(character.characterId)} /> : <img src={unfav_star} width={25} height={25} onClick={() => this.handleUnFavouriteClick(character.characterId)} />
+                                            character.favouriteCharacter ? <img src={favourite_star} width={25} height={25} alt="Double click" onClick={() => this.handleFavouriteClick(character.characterId)} /> : <img src={unfav_star} width={25} height={25} alt="Double CLick" onClick={() => this.handleUnFavouriteClick(character.characterId)} />
                                         }
                                     </td>
                                 </tr>

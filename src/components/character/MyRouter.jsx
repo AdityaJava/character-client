@@ -12,7 +12,6 @@ class MyRouter extends Component {
                     <Route exact path="/" element={<HomeComponent />}></Route>
                     <Route exact path="/dropdown" element={<DropdownHousesComponent />}></Route>
                     <Route exact path="/showAll" element={<ShowAllCharacters />}></Route>
-
                 </Routes>
             </BrowserRouter>
         )

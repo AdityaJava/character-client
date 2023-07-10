@@ -1,10 +1,10 @@
-import React, { Component, useState } from "react"
+import React, { Component } from "react"
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CharacterService from "./api/CharacterService";
-import { Button } from "bootstrap";
 import '/node_modules/@syncfusion/ej2-layouts/styles/material.css';
 import HeaderComponent from "./HeaderComponent";
+
 class DropdownHousesComponent extends Component {
     constructor(props) {
         super(props)

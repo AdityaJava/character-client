@@ -8,20 +8,17 @@ class HeaderComponent extends Component {
             <div>
                 <header>
                     <nav className="navbar navbar-expand-md navbar-dark bg-dark">
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <Link to="/">Home</Link>
-                                </li>
-                                <li class="nav-item active">
-                                    <Link to="/dropdown">Show Character Dropdown</Link>
-                                </li>
-                                <li class="nav-item active">
-                                    <Link to="/showAll">Show All Characters</Link>
-                                </li>
-
-                            </ul>
-                        </div>
+                        <ul className="navbar-nav navbar-collapse">
+                            <li className="nav-link ">
+                                <Link to="/">Home</Link>
+                            </li>
+                            <li className="nav-link ">
+                                <Link to="/dropdown">Dropdown</Link>
+                            </li>
+                            <li className="nav-link ">
+                                <Link to="/showAll">AllCharacters</Link>
+                            </li>
+                        </ul>
                     </nav>
                 </header>
             </div>
