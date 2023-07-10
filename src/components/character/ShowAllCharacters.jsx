@@ -1,6 +1,8 @@
 import { Button } from "bootstrap";
 import React, { Component } from "react";
 import CharacterService from "./api/CharacterService";
+import favourite_star from "./images/favourite_star.png";
+import unfav_star from "./images/unfav_star.png"
 
 class ShowAllCharacters extends Component {
     constructor(props) {
@@ -8,10 +10,13 @@ class ShowAllCharacters extends Component {
         this.state = {
             characters: [],
             totalNumberOfPages: 0,
-            currentPage: 0
+            currentPage: 0,
+            favouriteStatusImage: { favourite_star }
         }
         this.handleNextButtonClick = this.handleNextButtonClick.bind(this)
         this.handlePreviousButtonClick = this.handlePreviousButtonClick.bind(this)
+        this.handleUnFavouriteClick = this.handleUnFavouriteClick.bind(this)
+        this.handleFavouriteClick = this.handleFavouriteClick.bind(this)
     }
 
 
@@ -23,7 +28,6 @@ class ShowAllCharacters extends Component {
                     characters: response.data.content,
                     currentPage: 0,
                     totalNumberOfPages: response.data.totalPages
-
 
                 })
             })
@@ -45,6 +49,11 @@ class ShowAllCharacters extends Component {
                                 <tr>
                                     <td>{character.characterId}</td>
                                     <td>{character.characterName}</td>
+                                    <td>
+                                        {
+                                            character.favouriteCharacter ? <img src={favourite_star} width={25} height={25} onClick={() => this.handleFavouriteClick(character.characterId)} /> : <img src={unfav_star} width={25} height={25} onClick={() => this.handleUnFavouriteClick(character.characterId)} />
+                                        }
+                                    </td>
                                 </tr>
                             )
                         }
@@ -68,18 +77,28 @@ class ShowAllCharacters extends Component {
 
 
     handleNextButtonClick() {
-        CharacterService.getAllCharactersWIthPaging(this.state.currentPage++)
-            .then(response => {
-                console.log(this.state.currentPage)
-            })
-
+        if (this.state.totalNumberOfPages >= (this.state.currentPage + 1)) {
+            CharacterService.getAllCharactersWIthPaging(this.state.currentPage++)
+                .then(response => {
+                    console.log(this.state.currentPage)
+                })
+        }
     }
 
     handlePreviousButtonClick() {
-        CharacterService.getAllCharactersWIthPaging(this.state.currentPage--)
-            .then(response => {
-                console.log(this.state.currentPage)
-            })
+        if ((this.state.currentPage - 1) >= 0) {
+            CharacterService.getAllCharactersWIthPaging(this.state.currentPage--)
+                .then(response => {
+                    console.log(this.state.currentPage)
+                })
+        }
+    }
+    handleUnFavouriteClick(characterId) {
+        CharacterService.markCharacterAsFavourite(characterId, true)
+
+    }
+    handleFavouriteClick(characterId) {
+        CharacterService.markCharacterAsFavourite(characterId, false)
     }
 
 }
