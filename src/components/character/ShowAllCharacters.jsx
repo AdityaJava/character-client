@@ -21,15 +21,15 @@ class ShowAllCharacters extends Component {
 
 
     componentDidMount() {
-        CharacterService.getAllCharacters()
+        CharacterService.getAllCharactersWIthPaging(0)
             .then(response => {
                 console.log(response.data)
                 this.setState({
                     characters: response.data.content,
-                    currentPage: 0,
+                    currentPage: response.data.pageable.pageNumber,
                     totalNumberOfPages: response.data.totalPages
-
                 })
+                console.log("componentDidMount " + this.state.currentPage)
             })
     }
 
@@ -78,27 +78,52 @@ class ShowAllCharacters extends Component {
 
     handleNextButtonClick() {
         if (this.state.totalNumberOfPages >= (this.state.currentPage + 1)) {
-            CharacterService.getAllCharactersWIthPaging(this.state.currentPage++)
+            CharacterService.getAllCharactersWIthPaging(this.state.currentPage + 1)
                 .then(response => {
-                    console.log(this.state.currentPage)
+                    this.setState({
+                        characters: response.data.content,
+                        currentPage: response.data.pageable.pageNumber
+
+                    })
                 })
+            console.log(this.state.currentPage)
         }
     }
 
     handlePreviousButtonClick() {
-        if ((this.state.currentPage - 1) >= 0) {
-            CharacterService.getAllCharactersWIthPaging(this.state.currentPage--)
+        if ((this.state.currentPage - 1) >= -1) {
+            CharacterService.getAllCharactersWIthPaging(this.state.currentPage - 1)
                 .then(response => {
-                    console.log(this.state.currentPage)
+                    this.setState({
+                        characters: response.data.content,
+                        currentPage: response.data.pageable.pageNumber
+                    })
                 })
+            console.log(this.state.currentPage)
         }
     }
+
     handleUnFavouriteClick(characterId) {
         CharacterService.markCharacterAsFavourite(characterId, true)
-
+        CharacterService.getAllCharactersWIthPaging(this.state.currentPage)
+            .then(response => {
+                this.setState({
+                    characters: response.data.content,
+                    currentPage: response.data.pageable.pageNumber
+                })
+            })
     }
     handleFavouriteClick(characterId) {
         CharacterService.markCharacterAsFavourite(characterId, false)
+        CharacterService.getAllCharactersWIthPaging(this.state.currentPage)
+            .then(response => {
+                console.log(response.data)
+                this.setState({
+                    characters: response.data.content,
+                    currentPage: response.data.pageable.pageNumber
+                })
+            })
+
     }
 
 }

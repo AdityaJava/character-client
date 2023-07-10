@@ -14,7 +14,7 @@ class CharacterService {
         return axios.get(`http://localhost:8080/api/v1/characters/familytree/${houseName}`)
     }
     getAllCharactersWIthPaging(pageNumber) {
-        return axios.get(`http://localhost:8080/api/v1/characters?page=${pageNumber}&size=30`)
+        return axios.get(`http://localhost:8080/api/v1/characters?page=${pageNumber}&size=20`)
     }
     getAllCharacters() {
         return axios.get(`http://localhost:8080/api/v1/characters`)
