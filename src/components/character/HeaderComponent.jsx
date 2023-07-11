@@ -18,6 +18,9 @@ class HeaderComponent extends Component {
                             <li className="nav-link ">
                                 <Link to="/showAll">AllCharacters</Link>
                             </li>
+                            <li className="nav-link ">
+                                <Link to="/favouriteCharacter">FavouriteCharacters</Link>
+                            </li>
                         </ul>
                     </nav>
                 </header>
